@@ -23,7 +23,7 @@ class WorkoutExerciseSchema(ma.Schema):
     reps = fields.Int(required=True)
     sets = fields.Int(required=True)
     duration_seconds = fields.Int(required=True)
-    #note = fields.Str()
+    
     #workout_exercises = fields.Nested('WorkoutExerciseSchema', many=True, exclude=('workout',))
 
     @validates('reps', 'sets', 'duration_seconds')

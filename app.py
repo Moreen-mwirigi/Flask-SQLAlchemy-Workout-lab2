@@ -34,9 +34,7 @@ def create_workout():
         return make_response(workout_schema.dump(new_workout), 201)
     except ValidationError as err:
         return make_response(jsonify(err.messages), 400)
-    #except Exception as e:
-        #return make_response(jsonify({"error": str(e)}), 400)
-
+    
 @app.route('/workouts/<int:id>', methods=['DELETE'])
 def delete_workout(id):
     workout = Workout.query.get(id)
@@ -69,8 +67,6 @@ def create_exercise():
         return make_response(exercise_schema.dump(new_exercise), 201)
     except ValidationError as err:
         return make_response(jsonify(err.messages), 400)
-    #except Exception as e:
-        #return make_response(jsonify({"error": str(e)}), 400)
 
 @app.route('/exercises/<int:id>', methods=['DELETE'])
 def delete_exercise(id):
@@ -100,8 +96,6 @@ def add_exercise_to_workout(workout_id, exercise_id):
         return make_response(workout_exercise_schema.dump(new_workout_exercise), 201)
     except ValidationError as err:
         return make_response(jsonify(err.messages), 400)
-    #except Exception as e:
-        #return make_response(jsonify({"error": str(e)}), 400)
-
+    
 if __name__ == '__main__':
     app.run(port=5000, debug=True)
