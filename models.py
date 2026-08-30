@@ -16,17 +16,6 @@ class Workout(db.Model, SerializerMixin):
 
     serialize_rules = ('-workout_exercises.workout',)
 
-    @validates('name')
-    def validate_name(self, key, name):
-        if not name:
-            raise ValueError("Workout name cannot be empty.")
-        return name
-
-    @validates('duration')
-    def validate_duration(self, key, duration):
-        if duration <= 0:
-            raise ValueError("Duration must be a positive integer.")
-        return duration
 
 class Exercise(db.Model, SerializerMixin):
     __tablename__ = 'exercises'
@@ -45,12 +34,6 @@ class Exercise(db.Model, SerializerMixin):
         if not name:
             raise ValueError("Exercise name cannot be empty.")
         return name
-
-    @validates('sets', 'reps', 'duration_seconds')
-    def validate_positive_integer(self, key, value):
-        if value <= 0:
-            raise ValueError(f"{key.capitalize()} must be a positive integer.")
-        return value
 
 class WorkoutExercise(db.Model, SerializerMixin):
     __tablename__ = 'workout_exercises'
