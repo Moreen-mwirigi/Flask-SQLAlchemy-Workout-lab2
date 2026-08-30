@@ -24,10 +24,9 @@ with app.app_context():
     db.session.commit()
 
     print("Seeding join...")
-    db.session.add_all([
-        WorkoutExercise(workout_id=workout1.id, exercise_id=exercise1.id, sets=3, reps=15),
-        WorkoutExercise(workout_id=workout1.id, exercise_id=exercise2.id, sets=3, reps=20),
-        WorkoutExercise(workout_id=workout2.id, exercise_id=exercise3.id, sets=1, reps=1),
-    ])
+    we1 = WorkoutExercise(workout_id=workout1.id, exercise_id=exercise1.id, sets=3, reps=15, duration_seconds=300)
+    we2 = WorkoutExercise(workout_id=workout1.id, exercise_id=exercise2.id, sets=3, reps=20, duration_seconds=500)
+    we3 = WorkoutExercise(workout_id=workout2.id, exercise_id=exercise3.id, sets=1, reps=1, duration_seconds=1800)
+    db.session.add_all([we1, we2, we3])
     db.session.commit()
     print("Seeding completed.")
